@@ -133,64 +133,7 @@ nginxパッケージが導入されている状態(=存在する状態, present)
 nginxのインストールが行われます。
 
 ```console
-$ ansible-playbook -i inventory/inventory.ini playbook/main.yml
-
-PLAY [all] ***********************************************************************************
-
-TASK [Gathering Facts] ***********************************************************************
-ok: [192.168.56.101]
-
-TASK [nginx : Install nginx] *****************************************************************
-ok: [192.168.56.101]
-
-TASK [nginx : Automatically start nginx when the server starts] ******************************
-ok: [192.168.56.101]
-
-TASK [nginx : Start nginx] *******************************************************************
-ok: [192.168.56.101]
-
-PLAY RECAP ***********************************************************************************
-192.168.56.101             : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-
-(local) RyomanoMacBook-Pro:ansible_nginx fujiwara$ ansible-playbook -i inventory/inventory.ini playbook/main.yml 
-
-PLAY [nginx] *********************************************************************************
-
-TASK [Gathering Facts] ***********************************************************************
-ok: [192.168.56.101]
-
-TASK [nginx : Install nginx] *****************************************************************
-ok: [192.168.56.101]
-
-TASK [nginx : Automatically start nginx when the server starts] ******************************
-ok: [192.168.56.101]
-
-TASK [nginx : Start nginx] *******************************************************************
-ok: [192.168.56.101]
-
-PLAY RECAP ***********************************************************************************
-192.168.56.101             : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-
-(local) RyomanoMacBook-Pro:ansible_nginx fujiwara$ ansible-playbook -i inventory/inventory.ini playbook/main.yml 
-
-PLAY [nginx] *********************************************************************************
-
-TASK [Gathering Facts] ***********************************************************************
-ok: [192.168.56.101]
-
-TASK [nginx : Install nginx] *****************************************************************
-ok: [192.168.56.101]
-
-TASK [nginx : Automatically start nginx when the server starts] ******************************
-ok: [192.168.56.101]
-
-TASK [nginx : Start nginx] *******************************************************************
-ok: [192.168.56.101]
-
-PLAY RECAP ***********************************************************************************
-192.168.56.101             : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-
-(local) RyomanoMacBook-Pro:ansible_nginx fujiwara$ ansible-playbook -i inventory/inventory.ini playbook/main.yml 
+$ ansible-playbook -i inventory/inventory.ini playbook/main.yml 
 
 PLAY [nginx] *********************************************************************************
 
