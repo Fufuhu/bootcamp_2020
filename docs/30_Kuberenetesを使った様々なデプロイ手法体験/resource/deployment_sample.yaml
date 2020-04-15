@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+# Deploymentとしての設定
+spec: # ReplicaSetとしての設定
+  replicas: 3
+  # セレクタを使って管理対象とするPodを指定
+  selector:
+    matchLabels: # appの値がnginxとなっているPodを
+                 # ReplicaSetの管理配下に含める
+      app: nginx
+  template: # 以降はPodの設定
+    metadata:
+      labels: # Podに設定するラベル
+        app: nginx
+    spec:
+      containers: # Pod内に含まれるコンテナ設定について記述
+        - name: nginx-container
+          image: nginx:1.12
+          ports: # Podとして外向けに公開するポートを記述
+            - containerPort: 80
