@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nodeport-service
+spec:
+  type: NodePort
+  ports:
+    - name: http-port
+      protocol: TCP # プロトコルはTCP
+      nodePort: 30080 # ノードから外部向けに公開するポート
+      port: 80 # TCP:80で受けたパケットを
+      targetPort: 80 # 配下にぶら下がっているPodのTCP:80に流す
+  # セレクタを使ってぶら下がるPodを指定
+  selector:
+    # ラベルとして、appの値がnginxとなっているPodにリクエストをルーティングする
+    app: nginx  
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+# Deploymentとしての設定
+spec: # ReplicaSetとしての設定
+  replicas: 3
+  # セレクタを使って管理対象とするPodを指定
+  selector:
+    matchLabels: # appの値がnginxとなっているPodを
+                 # ReplicaSetの管理配下に含める
+      app: nginx
+  template: # 以降はPodの設定
+    metadata:
+      labels: # Podに設定するラベル
+        app: nginx
+    spec:
+      containers: # Pod内に含まれるコンテナ設定について記述
+        - name: nginx-container
+          image: nginx:1.12
+          ports: # Podとして外向けに公開するポートを記述
+            - containerPort: 80
