@@ -1,3 +1,4 @@
+# -*- mode: ruby -*-
 # vi: set ft=ruby :
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -53,8 +54,9 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-    vb.memory = "4096"
-    vb.cpus = 2
+  #   vb.memory = "1024"
+      vb.memory = "4096"
+      vb.cpus = 2
   end
   #
   # View the documentation for the provider you are using for more
@@ -67,18 +69,32 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  
+  # config.vm.synced_folder "./files", "/vagrant/files"
   config.vm.provision "shell", inline: <<-SHELL
     sudo sed -i.bak -e 's%http://archive.ubuntu.com/ubuntu%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g' /etc/apt/sources.list
-    sudo apt update
-    sudo apt install python3-pip -y
-    sudo pip3 install ansible
-    #sudo  install -y python ansible
+    sudo apt-get update
+    sudo apt-get install nginx wget -y
+    sudo system enable nginx 
+    sudo wget https://github.com/rancher/k3s/releases/download/v1.17.4%2Bk3s1/k3s
+    sudo chmod +x k3s
+    sudo mv k3s /usr/local/bin/k3s
+    sudo cat <<EOF > /etc/systemd/system/k3s.service
+    [Unit]
+    Description=k3s
+    After=network.target
+    
+    [Service]
+    User=root
+    Group=root
+    ExecStart=/usr/local/bin/k3s server --write-kubeconfig-mode 0644
+    
+    [Install]
+    WantedBy=multi-user.target
+EOF
+    #sudo mv /vagrant/files/k3s.service /etc/systemd/system/k3s.service
+    sudo systemctl daemon-reload
+    sudo systemctl enable k3s
+    sudo systemctl start k3s
   SHELL
-#  config.vm.provision "ansible" do |ansible|
-#    ansible.playbook = "bench.yaml"
-#    ansible.inventory_path = "hosts.yaml"
-#    ansible.limit = 'all'
-#    ansible.verbose = "v"
-    # ansible.raw_arguments = "--vault-password-file=.vault_password"
-#  end
 end
