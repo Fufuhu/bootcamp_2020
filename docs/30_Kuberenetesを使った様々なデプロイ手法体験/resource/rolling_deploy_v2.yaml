@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nodeport-service
+spec:
+  type: NodePort
+  ports:
+    - name: http-port
+      protocol: TCP
+      nodePort: 30080
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx  
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec: 
+  replicas: 10
+  selector:
+    matchLabels: 
+      app: nginx
+  strategy: # デプロイ戦略の指定
+    rollingUpdate: # RollingUpdate
+      maxSurge: 1 # replicasの許容超過数(1 Podまでは超過可)
+      maxUnavailable: 0 # replicasの許容不足数(不足は許容しない)
+  template: 
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers: 
+        - name: nginx-container
+          image: fufuhu/bootcamp-rolling-nginx:v2
+          ports: 
+            - containerPort: 80
