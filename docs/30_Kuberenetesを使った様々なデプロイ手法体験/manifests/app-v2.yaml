@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-v2
+  labels:
+    app: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+      version: v2.0.0
+  template:
+    metadata:
+      labels:
+        app: my-app
+        version: v2.0.0
+    spec:
+      containers:
+      - name: my-app
+        image: rtcdev/devops-sample:2020 
+        ports:
+        - name: http
+          containerPort: 8080
+        env:
+        - name: VERSION
+          value: v2.0.0
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http
