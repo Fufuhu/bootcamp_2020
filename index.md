@@ -15,7 +15,7 @@
   + [(補足)Virtualboxのネットワーク設定](docs/00_前提とする環境/10_(補足)Virtualboxのネットワーク設定.md)
   + [(補足)仮想マシンの設定](docs/00_前提とする環境/20_(補足)仮想マシンの設定.md)
   + なお、仮想マシンの設定についてはVagrantを別途提供しているのでそれを利用しても構いません
-    + Vagrantを使った仮想マシンセットアップ
+    + [Vagrantを使った仮想マシンセットアップ](docs/05_Vagrantを使った環境構築/01_Vagrant環境の構築.md)
 + Ansibleを使ったOS環境セットアップ
   + [Ansibleとは](docs/10_ansibleを使った仮想マシンセットアップ/01_ansibleとは.md)
   + [Ansibleを使ったNginxのインストール](docs/10_ansibleを使った仮想マシンセットアップ/10_ansibleを使ったnginxのインストール.md)
