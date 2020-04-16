@@ -26,5 +26,5 @@
 + Kubernetesをつかった様々なデプロイ手法
   + [Kubernetesの解説(簡易版)](docs/30_Kuberenetesを使った様々なデプロイ手法体験/00_Kubernetesの解説.md)
   + [ローリングデプロイ](docs/30_Kuberenetesを使った様々なデプロイ手法体験/20_ローリングデプロイ.md)
-  + Blue Greenデプロイ
+  + [ブルーグリーンデプロイ](docs/30_Kuberenetesを使った様々なデプロイ手法体験/30_ブルーグリーンデプロイ.md)
   + [カナリアリリース](docs/30_Kuberenetesを使った様々なデプロイ手法体験/40_カナリアリリース.md)
