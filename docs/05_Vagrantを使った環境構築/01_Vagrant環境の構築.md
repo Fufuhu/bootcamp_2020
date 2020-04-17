@@ -22,3 +22,11 @@ default: Successfully built ansible
     default: Installing collected packages: ansible
     default: Successfully installed ansible-2.9.7
 ```
+
+## ログインの確認
+上記メッセージが出てセットアップが完了したら以下のコマンドでログインを行います
+
+```
+vagrant ssh
+```
+これでインスタンスにログインできたらvagrantの環境構築は完了です
