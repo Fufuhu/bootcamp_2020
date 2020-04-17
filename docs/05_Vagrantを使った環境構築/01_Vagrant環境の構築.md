@@ -30,3 +30,10 @@ default: Successfully built ansible
 vagrant ssh
 ```
 これでインスタンスにログインできたらvagrantの環境構築は完了です
+
+## 補足
+初期ユーザー情報
+```
+ID: vagrant
+PASS: vagrant
+```
