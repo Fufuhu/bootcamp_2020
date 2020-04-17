@@ -18,6 +18,7 @@ vagrant up
 
 色々コンソールが流れてきますが、最後に以下のように表示されれば成功です
 ```
-default: 2020-04-16 01:07:44 (118 KB/s) - ‘k3s’ saved [52359168/52359168]
-default: Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service → /etc/systemd/system/k3s.service.
+default: Successfully built ansible
+    default: Installing collected packages: ansible
+    default: Successfully installed ansible-2.9.7
 ```
